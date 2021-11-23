@@ -1,0 +1,380 @@
+#:kivy 2.0.0
+
+<TestScreen>:
+    name: 'screen_test'
+    id: test_screen
+
+    # Formatting to hold title and button grid sections
+    GridLayout:
+        size: root.width, root.height
+        cols: 1
+        rows: 2
+
+        # Header at the top that makes the title
+        AnchorLayout:
+            canvas: 
+                Color: 
+                    rgba: 1, 1, 1, .2
+                RoundedRectangle: 
+                    pos: self.pos
+                    size: self.size
+            size_hint: [1.3, 0.06]
+            anchor_x: 'center'
+            anchor_y: 'center'
+            Label:
+                id: title
+                text: "Command Inputs"
+                font_size: 25
+
+        # Grid with buttons holding acks and events of buttons
+        GridLayout:
+            canvas: 
+                Color: 
+                    rgba: 1, 1, 1, 1
+                RoundedRectangle: 
+                    pos: self.pos
+                    size: self.size
+            
+            size: root.width, root.height
+            cols: 3
+            padding: 20
+            spacing: 40
+
+            GridLayout:
+                size: root.width, root.height
+                cols: 1
+                rows: 3
+                Label:
+                    id: door_opened
+                    canvas.before: 
+                        Color: 
+                            rgba: 0, 0, 0, 1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                    text: 'Door Opened'
+                Button:
+                    text: 'Door Opened Ack'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'command_ack'
+                    i_d: 'door'
+                    byte: 'opened'
+                Button:
+                    text: 'Door Opened Event'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'event'
+                    i_d: 'door'
+                    byte: 'opened'
+            
+            GridLayout:
+                size: root.width, root.height
+                cols: 1
+                rows: 3
+                Label:
+                    id: door_closed
+                    canvas.before: 
+                        Color: 
+                            rgba: 0, 0, 0, 1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                    text: 'Door Closed'
+                Button:
+                    text: 'Door Closed Ack'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'command_ack'
+                    i_d: 'door'
+                    byte: 'closed'
+                Button:
+                    text: 'Door Closed Event'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'event'
+                    i_d: 'door'
+                    byte: 'closed'
+
+            GridLayout:
+                size: root.width, root.height
+                cols: 1
+                rows: 3
+                Label:
+                    id: ir_broken
+                    canvas.before: 
+                        Color: 
+                            rgba: 0, 0, 0.5, 1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                    text: 'IR Broken'
+                Button:
+                    text: 'IR Broken Ack'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                Button:
+                    text: 'IR Broken Event'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+
+            GridLayout:
+                size: root.width, root.height
+                cols: 1
+                rows: 3
+                Label:
+                    id: ir_clear
+                    canvas.before: 
+                        Color: 
+                            rgba: 0, 0, .5, 1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                    text: 'IR Clear'
+                Button:
+                    text: 'IR Clear Ack'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                Button:
+                    text: 'IR Clear Event'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+
+            GridLayout:
+                size: root.width, root.height
+                cols: 1
+                rows: 3
+                Label:
+                    id: button_pressed
+                    canvas.before: 
+                        Color: 
+                            rgba: 0, 0.5, 0, 1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                    text: 'Button Pressed'
+                Button:
+                    text: 'Button Pressed Ack'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                Button:
+                    text: 'Button Pressed Event'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+
+            GridLayout:
+                size: root.width, root.height
+                cols: 1
+                rows: 3
+                Label:
+                    id: door_opened
+                    canvas.before: 
+                        Color: 
+                            rgba: 0, 0, 0, 1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                    text: 'Door Stopped'
+                Button:
+                    text: 'Door Stopped Ack'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'command_ack'
+                    i_d: 'door'
+                    byte: 'stop'
+                Button:
+                    text: 'Door Stopped Event'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'event'
+                    i_d: 'door'
+                    byte: 'stop'
+
+            GridLayout:
+                size: root.width, root.height
+                cols: 1
+                rows: 3
+                Label:
+                    id: door_stalled
+                    canvas.before: 
+                        Color: 
+                            rgba: 0, 0, 0, 1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                    text: 'Door Stalled'
+                Button:
+                    text: 'Door Stalled Ack'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'command_ack'
+                    i_d: 'door'
+                    byte: 'stalled'
+                Button:
+                    text: 'Door Stalled Event'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'event'
+                    i_d: 'door'
+                    byte: 'stalled'
+
+            GridLayout:
+                size: root.width, root.height
+                cols: 1
+                rows: 3
+                Label:
+                    id: door_forced_open
+                    canvas.before: 
+                        Color: 
+                            rgba: 0, 0, 0, 1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                    text: 'Door Forced Open'
+                Button:
+                    text: 'Door Forced Open Ack'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'command_ack'
+                    i_d: 'door'
+                    byte: 'forced_open'
+                Button:
+                    text: 'Door Forced Open Event'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'event'
+                    i_d: 'door'
+                    byte: 'forced_open'
+
+            GridLayout:
+                size: root.width, root.height
+                cols: 1
+                rows: 3
+                Label:
+                    id: ballast_lamps_on
+                    canvas.before: 
+                        Color: 
+                            rgba: 0, .6, .6, 0.5
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                    text: 'Ballast Lamps On'
+                Button:
+                    text: 'Ballast Lamps On Ack'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'command_ack'
+                    i_d: 'ballast'
+                    byte: 'on'
+                Button:
+                    text: 'Ballast Lamps On Event'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'event'
+                    i_d: 'ballast'
+                    byte: 'on'
+
+            GridLayout:
+                size: root.width, root.height
+                cols: 1
+                rows: 3
+                Label:
+                    id: ballast_lamps_off
+                    canvas.before: 
+                        Color: 
+                            rgba: 0, .6, .6, 0.5
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                    text: 'Ballast Lamps Off'
+                Button:
+                    text: 'Ballast Lamps Off Ack'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'command_ack'
+                    i_d: 'ballast'
+                    byte: 'off'
+                Button:
+                    text: 'Ballast Lamps Off Event'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'event'
+                    i_d: 'ballast'
+                    byte: 'off'
+
+            GridLayout:
+                size: root.width, root.height
+                cols: 1
+                rows: 3
+                Label:
+                    id: error
+                    canvas.before: 
+                        Color: 
+                            rgba: .7, 0, 0, .9
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                    text: 'Error'
+                Button:
+                    text: 'Error Ack'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'command_ack'
+                    i_d: 'error'
+                    byte: 'error'
+                Button:
+                    text: 'Error Event'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'event'
+                    i_d: 'error'
+                    byte: 'error'
+
+            GridLayout:
+                size: root.width, root.height
+                cols: 1
+                rows: 3
+                Label:
+                    id: error_resolved
+                    canvas.before: 
+                        Color: 
+                            rgba: .7, 0, 0, .8
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                    text: 'Error Resolved'
+                Button:
+                    text: 'Error Resolved Ack'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'command_ack'
+                    i_d: 'error'
+                    byte: 'no_error'
+                Button:
+                    text: 'Error Resolved Event'
+                    on_press: root.button_pressed(self)
+                    on_release: root.button_released(self)
+                    type: 'event'
+                    i_d: 'error'
+                    byte: 'no_error'
+
+
+    # CSUV Logo addition at the top right
+    AnchorLayout:
+        size: root.width, root.height
+        anchor_x: 'right'
+        anchor_y: 'top'
+        Image:
+            size_hint: [0.3, 0.055]
+            source: 'csuv.png'
+
+    AnchorLayout:
+        size: root.width, root.height
+        anchor_x: 'left'
+        anchor_y: 'top'
+        Button:
+            id: btnExit
+            size_hint: [0.3, 0.055]
+            text: "Exit"
+            on_press: root.close_serial(self)
+            on_release: app.get_running_app().stop() 
